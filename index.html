@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Qirguli City — bepul konsultatsiya</title>
+<meta name="description" content="Qirguli City — raqamingizni qoldiring va bepul konsultatsiyaga ega bo'ling." />
+<meta name="theme-color" content="#0f2a3a" />
+<link rel="icon" href="img/favicon.png" />
+<link rel="preload" as="image" href="img/dom-800.avif" type="image/avif" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,Arial,sans-serif;
+    color:#0f2a3a;background:#0f2a3a;-webkit-font-smoothing:antialiased;
+  }
+  .bg{position:fixed;inset:0;z-index:-1}
+  .bg img{width:100%;height:100%;object-fit:cover}
+  .bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,24,36,.55) 0%,rgba(8,24,36,.35) 35%,rgba(8,24,36,.6) 100%)}
+  main{
+    min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:calc(env(safe-area-inset-top) + 32px) 20px calc(env(safe-area-inset-bottom) + 32px);
+    max-width:440px;margin:0 auto;text-align:center;
+  }
+  .logo{
+    background:rgba(10,28,40,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(240,226,196,.25);border-radius:22px;padding:14px 22px;margin-bottom:20px;
+  }
+  .logo img{display:block;width:130px;height:auto}
+  h1{color:#fff;font-size:34px;font-weight:800;letter-spacing:-.5px;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+  .lead{color:rgba(255,255,255,.92);font-size:16px;line-height:1.45;margin:10px 0 22px;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+  .card{
+    width:100%;background:rgba(255,255,255,.96);border-radius:26px;padding:24px 20px 18px;text-align:left;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+  }
+  label{display:block;font-size:15px;font-weight:600;margin:0 0 8px}
+  .field{margin-bottom:16px}
+  input,select{
+    width:100%;height:52px;border:1.5px solid #dbe3ea;border-radius:14px;background:#fff;
+    font:inherit;font-size:17px;color:#0f2a3a;padding:0 16px;outline:none;transition:border-color .15s;
+    -webkit-appearance:none;appearance:none;
+  }
+  input::placeholder{color:#9aa7b2}
+  input:focus,select:focus,.phone:focus-within{border-color:#1f5f7f}
+  .phone{display:flex;align-items:center;height:52px;border:1.5px solid #dbe3ea;border-radius:14px;overflow:hidden;background:#f3f6f8}
+  .phone span{padding:0 10px 0 16px;font-size:17px;font-weight:600}
+  .phone input{border:0;border-radius:0;height:100%;padding-left:10px}
+  .select{position:relative}
+  .select::after{content:"";position:absolute;right:18px;top:50%;width:8px;height:8px;margin-top:-6px;
+    border-right:2px solid #0f2a3a;border-bottom:2px solid #0f2a3a;transform:rotate(45deg);pointer-events:none}
+  .invalid{border-color:#d9534f!important}
+  .err{color:#d9534f;font-size:13px;margin-top:6px;min-height:0}
+  button{
+    width:100%;height:54px;border:0;border-radius:16px;margin-top:4px;cursor:pointer;
+    background:linear-gradient(180deg,#2a6b8c,#18465e);color:#fff;font:inherit;font-size:18px;font-weight:700;
+    box-shadow:0 8px 20px rgba(24,70,94,.35);transition:transform .1s,opacity .15s;
+  }
+  button:active{transform:scale(.98)}
+  button:disabled{opacity:.6;cursor:default}
+  .note{font-size:13px;color:#6b7b88;text-align:center;margin-top:12px}
+  .done{text-align:center;padding:12px 4px}
+  .done .ic{width:64px;height:64px;border-radius:50%;background:#e5f4ec;color:#1f8a4c;
+    display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:32px}
+  .done h2{font-size:22px;margin-bottom:8px}
+  .done p{color:#4d5e6b;line-height:1.45}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="bg">
+  <picture>
+    <source type="image/avif" srcset="img/dom-480.avif 480w, img/dom-800.avif 800w" sizes="100vw" />
+    <img src="img/dom-800.webp" srcset="img/dom-480.webp 480w, img/dom-800.webp 800w" sizes="100vw" alt="" fetchpriority="high" />
+  </picture>
+</div>
+
+<main>
+  <div class="logo"><img src="img/logo-tab.png" alt="Qirguli City" width="130" height="102" /></div>
+  <h1>Qirguli City</h1>
+  <p class="lead">Raqamingizni qoldiring va bepul konsultatsiyaga ega bo'ling — mutaxassisimiz qo'ng'iroq qilib, narxlar va bo'sh uylar haqida ma'lumot beradi.</p>
+
+  <div class="card">
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="name">Ismingiz</label>
+        <input id="name" name="name" type="text" autocomplete="given-name" placeholder="Masalan: Aziz" />
+      </div>
+      <div class="field">
+        <label for="phone">Telefon raqamingiz</label>
+        <div class="phone" id="phoneWrap">
+          <span>+998</span>
+          <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="90 123 45 67" />
+        </div>
+        <div class="err" id="phoneErr" hidden>Telefon raqamini to'liq kiriting</div>
+      </div>
+      <div class="field">
+        <label for="rooms">Qanday uy qiziqtiradi?</label>
+        <div class="select">
+          <select id="rooms" name="rooms">
+            <option value="">Tanlang (ixtiyoriy)</option>
+            <option>1 xonali</option>
+            <option>2 xonali</option>
+            <option>3 xonali</option>
+            <option>Hali bilmayman</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" id="btn">Bepul konsultatsiya olish</button>
+      <p class="note">Ma'lumotlaringiz faqat siz bilan bog'lanish uchun ishlatiladi.</p>
+    </form>
+
+    <div class="done" id="done" hidden>
+      <div class="ic">✓</div>
+      <h2>Rahmat! Arizangiz qabul qilindi</h2>
+      <p>Mutaxassisimiz tez orada siz bilan bog'lanadi.</p>
+    </div>
+  </div>
+</main>
+
+<script>
+  const PROJECT_ID = 93
+  const API_URL = `https://backend.prohome.uz/api/v1/leeds/external/${PROJECT_ID}`
+
+  const form = document.getElementById('form')
+  const phone = document.getElementById('phone')
+  const phoneWrap = document.getElementById('phoneWrap')
+  const phoneErr = document.getElementById('phoneErr')
+  const btn = document.getElementById('btn')
+
+  // 90 123 45 67 formatida yozish
+  phone.addEventListener('input', () => {
+    const d = phone.value.replace(/\D/g, '').slice(0, 9)
+    const p = [d.slice(0, 2), d.slice(2, 5), d.slice(5, 7), d.slice(7, 9)].filter(Boolean)
+    phone.value = p.join(' ')
+    phoneWrap.classList.remove('invalid'); phoneErr.hidden = true
+  })
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const digits = phone.value.replace(/\D/g, '')
+    if (digits.length !== 9) {
+      phoneWrap.classList.add('invalid'); phoneErr.hidden = false; phone.focus(); return
+    }
+    btn.disabled = true; btn.textContent = 'Yuborilmoqda...'
+
+    const data = new URLSearchParams({ phone: '+998' + digits })
+    const name = document.getElementById('name').value.trim()
+    const rooms = document.getElementById('rooms').value
+    if (name) data.append('name', name)
+    if (rooms) data.append('comment', rooms)
+
+    // form-urlencoded + no-cors: CORS preflight yuborilmaydi, so'rov baribir yetib boradi
+    const req = fetch(API_URL, { method: 'POST', mode: 'no-cors', body: data, keepalive: true }).catch(() => {})
+    await Promise.race([req, new Promise((r) => setTimeout(r, 1500))])
+
+    form.hidden = true
+    document.getElementById('done').hidden = false
+  })
+</script>
+</body>
+</html>
